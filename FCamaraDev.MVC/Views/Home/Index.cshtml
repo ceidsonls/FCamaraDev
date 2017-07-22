@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "FCamara Consultoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="slim-scroll padder-h" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railopacity="0.2">
+    <div ng-controller="HomeController">
+        <div class="container-fluid">
+            <form name="loginForm" id="loginForm" ng-submit="login();"></form>
+            <div ng-show="ExibirLogin" id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">Login</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"></div>
+                    </div>
+                    <div style="padding-top:30px" class="panel-body">
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <form id="loginform" class="form-horizontal" role="form">
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="login-username" form="loginForm" type="text" class="form-control" name="username" value="" placeholder="Usuário" ng-model="Usuario.username" required>
+                            </div>
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="login-password" form="loginForm" type="password" class="form-control" name="password" placeholder="Senha" ng-model="Usuario.password" required>
+                            </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <div class="col-sm-12 controls">
+                                    <button form="loginForm" class="btn btn-success" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!ExibirLogin" class="row m-b-md">
+                <div class="col-sm-6">
+                    <h1 class="m-b-xs text-black">
+                        Lista de Produtos
+                    </h1>
+                </div>
+                <div class="form-group">
+                    <fieldset style="border-radius: 10px; margin: 25px; padding:15px; width:100%;">
+                        <div class="table-responsive" style="border: 1px solid silver;">
+                            <table id="tab_num_fibras" class="table table-striped b-t b-light">
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-4 sort">Código</th>
+                                        <th class="col-sm-4 sort">Nome</th>
+                                        <th class="col-sm-4 sort">Preço</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    <tr ng-repeat="produto in ListProdutos">
+                                        <td>
+                                            <span>{{produto.Codigo}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{produto.Nome}}</span>
+                                        </td>
+                                        <td>
+                                            <span>R$ {{converterFloatParaMoeda(produto.Valor) }}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <button ng-click="GetProdutos();" class="btn btn-success" type="submit">buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#loginForm").removeAttr("novalidate");
+        });
+    </script>
+    <script src="~/Scripts/appAngular.js"></script>
+}
