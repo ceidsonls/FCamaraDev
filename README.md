@@ -135,7 +135,8 @@ appAngular.config(['$httpProvider', function ($httpProvider) {
 Após baixar o projeto deve informar o URL do servidor que será consumido na classe javascript.
 Com o servidor em execução informe um usuário válido,  Login: Admin senha: admin.
 Pode Atualizar a pagina (F5) ou acionar o botão atualizar para verificar se o token expirou.
-
+Usuário: Admin
+Senha: admin
 
 # Contribute
 https://angularjs.org/
